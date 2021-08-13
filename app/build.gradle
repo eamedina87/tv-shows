@@ -9,8 +9,8 @@ def cfg = rootProject.ext.configuration
 def libs = rootProject.ext.libraries
 
 android {
-    compileSdk 30
-    buildToolsVersion "30.0.3"
+    compileSdk cfg.compileSdkVersion
+    buildToolsVersion cfg.buildToolsVersion
 
     defaultConfig {
         applicationId cfg.applicationId
@@ -26,6 +26,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_PROD')
+        }
+        debug {
+            debuggable true
+            applicationIdSuffix ".dev"
+            buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_DEV')
         }
     }
     compileOptions {
@@ -51,6 +57,11 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${libs.appcompat}"
     implementation "com.google.android.material:material:${libs.material}"
     implementation "androidx.constraintlayout:constraintlayout:${libs.constraint}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${libs.lifecycle}"
+    implementation "androidx.activity:activity-ktx:${libs.activity}"
+    implementation "androidx.fragment:fragment-ktx:${libs.fragment}"
+    //COROUTINES
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.coroutines}"
 
     //NAVIGATION
     implementation "androidx.navigation:navigation-fragment-ktx:${libs.navigation}"
@@ -59,12 +70,19 @@ dependencies {
     //DEPENDENCY INJECTION
     implementation "com.google.dagger:hilt-android:${libs.hilt}"
     kapt "com.google.dagger:hilt-android-compiler:${libs.hilt}"
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0'
-
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:${libs.hilt_viewmodel}"
+    kapt "androidx.hilt:hilt-compiler:${libs.hilt_compiler}"
 
     //RETROFIT
     implementation "com.squareup.retrofit2:retrofit:${libs.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${libs.retrofit}"
+
+    //GSON
+    implementation "com.google.code.gson:gson:${libs.gson}"
+
+    //GLIDE
+    implementation "com.github.bumptech.glide:glide:${libs.glide}"
+    kapt "com.github.bumptech.glide:compiler:${libs.glide}"
 }
 
 def readVersionCode() {
