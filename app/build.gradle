@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+def cfg = rootProject.ext.configuration
+def libs = rootProject.ext.libraries
+
+android {
+    compileSdk 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId cfg.applicationId
+        minSdk cfg.minSdkVersion
+        targetSdk cfg.targetSdk
+        versionCode readVersionCode()
+        versionName readVersionName()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    //TESTING
+    testImplementation "junit:junit:4.+"
+    androidTestImplementation "androidx.test.ext:junit:${libs.junit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${libs.espresso}"
+
+    //ANDROID CORE + UI
+    implementation "androidx.core:core-ktx:${libs.core_ktx}"
+    implementation "androidx.appcompat:appcompat:${libs.appcompat}"
+    implementation "com.google.android.material:material:${libs.material}"
+    implementation "androidx.constraintlayout:constraintlayout:${libs.constraint}"
+
+    //NAVIGATION
+    implementation "androidx.navigation:navigation-fragment-ktx:${libs.navigation}"
+    implementation "androidx.navigation:navigation-ui-ktx:${libs.navigation}"
+
+    //DEPENDENCY INJECTION
+    implementation "com.google.dagger:hilt-android:${libs.hilt}"
+    kapt "com.google.dagger:hilt-android-compiler:${libs.hilt}"
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0'
+
+
+    //RETROFIT
+    implementation "com.squareup.retrofit2:retrofit:${libs.retrofit}"
+}
+
+def readVersionCode() {
+    def versionCodeFile = new File(project.rootDir, 'version.number')
+    return versionCodeFile.getText().toBigInteger()
+}
+
+def readVersionName() {
+    def versionNameFile = new File(project.rootDir, "version.name")
+    return versionNameFile.getText('UTF-8')
+}
