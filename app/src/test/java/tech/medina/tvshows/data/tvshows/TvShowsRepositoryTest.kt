@@ -1,6 +1,5 @@
 package tech.medina.tvshows.data.tvshows
 
-
 import androidx.paging.PagingSource
 import com.google.common.truth.Truth
 import io.mockk.*
@@ -55,6 +54,8 @@ class TvShowsRepositoryTest: BaseTest() {
         }
         coVerifySequence {
             tvMazeService.getShowDetail(any())
+        }
+        coVerify (exactly = 0) {
             showMapper.map(any())
         }
         with(showDetail){

@@ -38,7 +38,9 @@ class TvShowsRepository @Inject constructor(
             }
         }
 
-    override suspend fun getTvShowDetail(id: Long): Show =
-        showMapper.map(tvMazeService.getShowDetail(id))
+    override suspend fun getTvShowDetail(id: Long): Show {
+        val detail = tvMazeService.getShowDetail(id)
+        return showMapper.map(detail)
+    }
 
 }
