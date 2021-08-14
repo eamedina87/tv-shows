@@ -16,7 +16,7 @@ class TvShowsDataSource @Inject constructor(
             LoadResult.Page(
                 data = result,
                 prevKey = if (currentPage == TvShowsRepository.TV_MAZE_INITIAL_KEY) null else currentPage.minus(1),
-                nextKey = if (currentPage >= 10) null else currentPage.plus(1) //todo check how to set max value of next key check for error 404
+                nextKey = currentPage.plus(1)
             )
         } catch (t: Throwable) {
             LoadResult.Error(throwable = t)
