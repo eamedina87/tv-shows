@@ -35,7 +35,7 @@ ext {
         lifecycle         : "2.3.1",
         material          : "1.4.0",
         navigation        : "2.3.5",
-        pagination        : "3.0.0-beta03",
+        pagination        : "3.0.1",
         recyclerview      : "27.1.1",
         retrofit          : "2.9.0",
         testrunner        : "1.0.1",

@@ -62,6 +62,8 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:${libs.fragment}"
     //COROUTINES
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.coroutines}"
+    //PAGINATION
+    implementation "androidx.paging:paging-runtime-ktx:${libs.pagination}"
 
     //NAVIGATION
     implementation "androidx.navigation:navigation-fragment-ktx:${libs.navigation}"
@@ -83,6 +85,7 @@ dependencies {
     //GLIDE
     implementation "com.github.bumptech.glide:glide:${libs.glide}"
     kapt "com.github.bumptech.glide:compiler:${libs.glide}"
+
 }
 
 def readVersionCode() {

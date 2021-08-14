@@ -1,4 +1,4 @@
-package tech.medina.tvshows.data.remote.dto
+package tech.medina.tvshows.data.tvshows
 
 import com.google.gson.annotations.SerializedName
 
