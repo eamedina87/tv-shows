@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
 }
 
 def cfg = rootProject.ext.configuration
@@ -53,6 +54,7 @@ dependencies {
     testImplementation "com.google.truth:truth:${libs.truth}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${libs.coroutines}"
     testImplementation "androidx.arch.core:core-testing:${libs.arch_test}"
+    testImplementation "app.cash.turbine:turbine:${libs.turbine}"
     androidTestImplementation "androidx.test.ext:junit:${libs.junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${libs.espresso}"
 
@@ -62,16 +64,16 @@ dependencies {
     implementation "com.google.android.material:material:${libs.material}"
     implementation "androidx.constraintlayout:constraintlayout:${libs.constraint}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${libs.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:${libs.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${libs.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-common-java8:${libs.lifecycle}"
     implementation "androidx.activity:activity-ktx:${libs.activity}"
     implementation "androidx.fragment:fragment-ktx:${libs.fragment}"
-    //COROUTINEStestImplementation "io.mockk:mockk:${libs.mockk}"
-    //    testImplementation "com.google.truth:truth:${libs.truth}"
-    //    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${libs.coroutines_test}"
-    //    testImplementation "androidx.arch.core:core-testing:${libs.arch_test}"
+
+    //COROUTINES
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.coroutines}"
     //PAGINATION
     implementation "androidx.paging:paging-runtime-ktx:${libs.pagination}"
-
     //NAVIGATION
     implementation "androidx.navigation:navigation-fragment-ktx:${libs.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${libs.navigation}"
