@@ -2,12 +2,22 @@ package tech.medina.tvshows.data.tvshows
 
 import com.google.gson.annotations.SerializedName
 
+interface ICastDTO {
+    val id: Long?
+    val name: String?
+    val image: ImageDTO?
+}
+
 data class CastDTO(
     @SerializedName("person") val person: PersonDTO?,
     @SerializedName("character") val character: CharacterDTO?,
 )
 
 data class PersonDTO(
+    @SerializedName("id")
+    override val id: Long?,
+    @SerializedName("name")
+    override val name: String?,
     @SerializedName("country")
     val country: String?,
     @SerializedName("birthday")
@@ -15,41 +25,16 @@ data class PersonDTO(
     @SerializedName("deathday")
     val deathday: String?,
     @SerializedName("gender")
-    val gender: String?
-): Cast()
-
-class CharacterDTO: Cast()
-
-open class Cast {
-    @SerializedName("id")
-    val id: Long? = null
-    @SerializedName("name")
-    val name: String? = null
+    val gender: String?,
     @SerializedName("image")
-    val image: ImageDTO? = null
+    override val image: ImageDTO?
+): ICastDTO
 
-    override fun toString(): String {
-        return "id:${id} name:${name}"
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Cast
-
-        if (id != other.id) return false
-        if (name != other.name) return false
-        if (image != other.image) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = id?.hashCode() ?: 0
-        result = 31 * result + (name?.hashCode() ?: 0)
-        result = 31 * result + (image?.hashCode() ?: 0)
-        return result
-    }
-
-}
+class CharacterDTO(
+    @SerializedName("id")
+    override val id: Long,
+    @SerializedName("name")
+    override val name: String?,
+    @SerializedName("image")
+    override val image: ImageDTO?
+): ICastDTO

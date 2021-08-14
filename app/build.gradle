@@ -49,6 +49,10 @@ android {
 dependencies {
     //TESTING
     testImplementation "junit:junit:4.+"
+    testImplementation "io.mockk:mockk:${libs.mockk}"
+    testImplementation "com.google.truth:truth:${libs.truth}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${libs.coroutines}"
+    testImplementation "androidx.arch.core:core-testing:${libs.arch_test}"
     androidTestImplementation "androidx.test.ext:junit:${libs.junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${libs.espresso}"
 
@@ -60,7 +64,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${libs.lifecycle}"
     implementation "androidx.activity:activity-ktx:${libs.activity}"
     implementation "androidx.fragment:fragment-ktx:${libs.fragment}"
-    //COROUTINES
+    //COROUTINEStestImplementation "io.mockk:mockk:${libs.mockk}"
+    //    testImplementation "com.google.truth:truth:${libs.truth}"
+    //    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${libs.coroutines_test}"
+    //    testImplementation "androidx.arch.core:core-testing:${libs.arch_test}"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.coroutines}"
     //PAGINATION
     implementation "androidx.paging:paging-runtime-ktx:${libs.pagination}"

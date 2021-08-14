@@ -11,17 +11,16 @@ class TvShowsDataSource @Inject constructor(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ShowDTO> =
         try {
-            val currentPage = params.key ?: 0
+            val currentPage = params.key ?: TvShowsRepository.TV_MAZE_INITIAL_KEY
             val result = tvMazeService.getShows(currentPage)
             LoadResult.Page(
                 data = result,
-                prevKey = if (currentPage == 1) null else currentPage.minus(1),
+                prevKey = if (currentPage == TvShowsRepository.TV_MAZE_INITIAL_KEY) null else currentPage.minus(1),
                 nextKey = if (currentPage >= 10) null else currentPage.plus(1) //todo check how to set max value of next key check for error 404
             )
         } catch (t: Throwable) {
             LoadResult.Error(throwable = t)
         }
-
 
     override fun getRefreshKey(state: PagingState<Int, ShowDTO>): Int? =
         // We need to get the previous key (or next key if previous is null) of the page

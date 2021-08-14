@@ -10,30 +10,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import tech.medina.tvshows.BuildConfig
 import tech.medina.tvshows.data.TvMazeService
-import tech.medina.tvshows.data.mapper.IMapper
-import tech.medina.tvshows.data.mapper.ShowMapper
-import tech.medina.tvshows.data.tvshows.ITvShowsRepository
-import tech.medina.tvshows.data.tvshows.ShowDTO
-import tech.medina.tvshows.data.tvshows.TvShowsRepository
+import tech.medina.tvshows.data.mapper.*
+import tech.medina.tvshows.data.tvshows.*
+import tech.medina.tvshows.domain.model.Cast
+import tech.medina.tvshows.domain.model.Episode
+import tech.medina.tvshows.domain.model.Person
 import tech.medina.tvshows.domain.model.Show
 import javax.inject.Singleton
-
-@InstallIn(SingletonComponent::class)
-@Module
-abstract class DataModulesBinder {
-
-    @Binds
-    abstract fun bindShowMapper(
-        mapper: ShowMapper
-    ): IMapper<ShowDTO, Show>
-
-    @Binds
-    abstract fun bindShowRepository(
-        repository: TvShowsRepository
-    ): ITvShowsRepository
-
-}
-
 
 @InstallIn(SingletonComponent::class)
 @Module

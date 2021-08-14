@@ -24,6 +24,7 @@ class TvShowsRepository @Inject constructor(
 
     companion object {
         const val TV_MAZE_SHOWS_PER_PAGE = 250
+        const val TV_MAZE_INITIAL_KEY = 0
     }
 
     override suspend fun getTvShows(): Flow<PagingData<Show>> =
@@ -36,7 +37,6 @@ class TvShowsRepository @Inject constructor(
                 showMapper.map(it)
             }
         }
-
 
     override suspend fun getTvShowDetail(id: Long): Show =
         showMapper.map(tvMazeService.getShowDetail(id))
