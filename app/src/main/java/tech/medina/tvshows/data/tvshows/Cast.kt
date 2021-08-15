@@ -18,8 +18,6 @@ data class PersonDTO(
     override val id: Long?,
     @SerializedName("name")
     override val name: String?,
-    @SerializedName("country")
-    val country: String?,
     @SerializedName("birthday")
     val birthday: String?,
     @SerializedName("deathday")
@@ -32,7 +30,7 @@ data class PersonDTO(
 
 class CharacterDTO(
     @SerializedName("id")
-    override val id: Long,
+    override val id: Long?,
     @SerializedName("name")
     override val name: String?,
     @SerializedName("image")

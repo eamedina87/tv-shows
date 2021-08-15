@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 
 @InstallIn(SingletonComponent::class)
 @Module
-class UiModuleProvider {
+class UiModulesProvider {
 
     @Provides
     fun provideCoroutineDispatcher(): CoroutineDispatcher {

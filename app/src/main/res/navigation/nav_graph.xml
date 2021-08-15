@@ -11,7 +11,26 @@
         android:label="Tv Shows"
         tools:layout="@layout/fragment_shows_list">
 
+        <action
+            android:id="@+id/action_show_list_to_detail"
+            app:destination="@id/ShowDetail"/>
+
     </fragment>
+
+    <fragment
+        android:id="@+id/ShowDetail"
+        android:name="tech.medina.tvshows.ui.tvshows.detail.ShowDetailFragment"
+        android:label="Tv Shows"
+        tools:layout="@layout/fragment_shows_list">
+
+        <argument
+            android:name="showId"
+            app:argType="long"
+            android:defaultValue="-1L"/>
+
+    </fragment>
+
+
     <fragment
         android:id="@+id/FirstFragment"
         android:name="tech.medina.tvshows.ui.FirstFragment"

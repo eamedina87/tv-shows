@@ -18,6 +18,7 @@ data class Show(
     override val summary: String,
     override val imageMedium: String,
     override val imageOriginal: String,
+    val rating: Double,
     val episodeList: List<Episode>,
     val castList: List<Cast>
 ) : IData, Parcelable

@@ -17,9 +17,10 @@ class ShowMapper @Inject constructor(
         Show(
             id = input.id ?: -1,
             name = input.name ?: "",
-            summary = input.name ?: "",
+            summary = input.summary ?: "",
             imageMedium = input.image?.medium ?: "",
             imageOriginal = input.image?.original ?: "",
+            rating = input.rating?.average ?: -1.0,
             episodeList = input.embedded?.episodes?.filterNotNull()?.map { episodeMapper.map(it) } ?: listOf(),
             castList = input.embedded?.cast?.filterNotNull()?.map { castMapper.map(it) } ?: listOf()
         )

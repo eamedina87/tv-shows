@@ -5,16 +5,20 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import tech.medina.tvshows.databinding.ItemTvShowListBinding
 import tech.medina.tvshows.domain.model.Show
-import tech.medina.tvshows.ui.common.ImageLoader
+import tech.medina.tvshows.ui.common.IImageLoader
 
 class ShowListPagingAdapter(
-    private val imageLoader: ImageLoader
+    private val imageLoader: IImageLoader,
+    private val onItemClickFunction: (Show) -> Unit
 ) : PagingDataAdapter<Show, ShowViewHolder>(ShowDiffCallback()) {
 
     companion object {
 
-        fun create(imageLoader: ImageLoader) : ShowListPagingAdapter =
-            ShowListPagingAdapter(imageLoader)
+        fun create(
+            imageLoader: IImageLoader,
+            onItemClickFunction: (Show) -> Unit
+        ): ShowListPagingAdapter =
+            ShowListPagingAdapter(imageLoader, onItemClickFunction)
 
     }
 
@@ -30,7 +34,7 @@ class ShowListPagingAdapter(
             parent,
             false
         )
-        return ShowViewHolder.create(imageLoader, binding)
+        return ShowViewHolder.create(imageLoader, binding, onItemClickFunction)
     }
 
 }

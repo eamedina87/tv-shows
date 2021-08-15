@@ -18,7 +18,7 @@ import javax.inject.Inject
 abstract class BaseFragment : Fragment() {
 
     @Inject
-    lateinit var imageLoader: ImageLoader
+    lateinit var imageLoader: IImageLoader
 
     abstract val viewModel : ViewModel?
 

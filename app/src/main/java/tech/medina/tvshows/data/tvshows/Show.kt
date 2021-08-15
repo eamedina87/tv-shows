@@ -6,6 +6,7 @@ interface IDataDTO {
     val id: Long?
     val name: String?
     val image: ImageDTO?
+    val summary: String?
     val runtimeInMinutes: Int?
 }
 
@@ -14,10 +15,14 @@ data class ShowDTO(
     override val id: Long?,
     @SerializedName("name")
     override val name: String?,
+    @SerializedName("summary")
+    override val summary: String?,
     @SerializedName("image")
     override val image: ImageDTO?,
     @SerializedName("runtime")
     override val runtimeInMinutes: Int?,
+    @SerializedName("rating")
+    val rating: RatingDTO?,
     @SerializedName("genres")
     val genres: List<String?>?,
     @SerializedName("language")
@@ -38,7 +43,7 @@ data class EpisodeDTO(
     @SerializedName("runtime")
     override val runtimeInMinutes: Int?,
     @SerializedName("summary")
-    val summary: String?,
+    override val summary: String?,
     @SerializedName("season")
     val season: Int?,
     @SerializedName("number")
@@ -50,6 +55,10 @@ data class EpisodeDTO(
 data class ImageDTO(
     @SerializedName("medium") val medium: String?,
     @SerializedName("original") val original: String?,
+)
+
+data class RatingDTO(
+    @SerializedName("average") val average: Double?,
 )
 
 data class EmbeddedDTO(

@@ -27,7 +27,9 @@ class ShowsListFragment: BaseFragment() {
     private val binding get() = _binding!! // This property is only valid between onCreateView and onDestroyView.
 
     private val adapter by lazy {
-        ShowListPagingAdapter.create(imageLoader)
+        ShowListPagingAdapter.create(imageLoader) {
+            goToDetail(it)
+        }
     }
 
     private val navController by lazy {
@@ -73,6 +75,10 @@ class ShowsListFragment: BaseFragment() {
 
     private fun onGetShowListError(error: Throwable) {
         showMessage(error.message ?: "An error ocurred.")
+    }
+
+    private fun goToDetail(show: Show) {
+        navController.navigate(ShowsListFragmentDirections.actionShowListToDetail(show.id))
     }
 
     private fun showLoader(show: Boolean = true) {

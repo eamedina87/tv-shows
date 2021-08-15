@@ -27,7 +27,7 @@ object FakeModel {
         name = "Show Name",
         summary = "This is the show summary",
         imageMedium = "https://static.tvmaze.com/uploads/images/medium_portrait/1/4600.jpg",
-        imageOriginal = "https://static.tvmaze.com/uploads/images/original_untouched/1/4600.jpg",
+        imageOriginal = "https://static.tvmaze.com/uploads/images/original_untouched/1/4600.jpg",,
         episodeList = emptyList(),
         castList = emptyList()
     )
@@ -37,7 +37,7 @@ object FakeModel {
         name = "Show Name",
         summary = "This is the show summary",
         imageMedium = "https://static.tvmaze.com/uploads/images/medium_portrait/1/4600.jpg",
-        imageOriginal = "https://static.tvmaze.com/uploads/images/original_untouched/1/4600.jpg",
+        imageOriginal = "https://static.tvmaze.com/uploads/images/original_untouched/1/4600.jpg",,
         episodeList = emptyList(),
         castList = listOf(cast)
     )

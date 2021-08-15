@@ -1,6 +1,7 @@
 ext {
 
-    kotlin_version = '1.4.10'
+    kotlin_version = '1.5.10'
+    android_gradle_version = '7.0.0-beta03'
 
     configuration = [
         applicationId       : "tech.medina.tvshows",
@@ -24,6 +25,7 @@ ext {
         hilt              : "2.37",
         hilt_viewmodel    : "1.0.0-alpha03",
         hilt_compiler     : "1.0.0",
+        hilt_plugin       : "2.29.1-alpha",
         interceptor       : "3.4.1",
         javax_annotation  : "10.0-b28",
         junit             : "1.1.3",
