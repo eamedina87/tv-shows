@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Shows"/>
+
+    <style name="Shows.Text" parent="Shows">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Shows.Text.Loader.Error" parent="Shows.Text"/>
+    <style name="Shows.Text.Loader.Button" parent="Shows.Text">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+</resources>

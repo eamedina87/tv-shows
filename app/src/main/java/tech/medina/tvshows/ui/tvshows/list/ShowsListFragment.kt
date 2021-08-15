@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -16,6 +17,8 @@ import tech.medina.tvshows.domain.model.Show
 import tech.medina.tvshows.ui.common.BaseFragment
 import tech.medina.tvshows.ui.tvshows.ShowsViewModel
 import tech.medina.tvshows.ui.tvshows.list.adapter.ShowListPagingAdapter
+import tech.medina.tvshows.ui.tvshows.list.adapter.ShowsLoadStateAdapter
+import tech.medina.tvshows.ui.utils.visible
 
 class ShowsListFragment: BaseFragment() {
 
@@ -37,6 +40,7 @@ class ShowsListFragment: BaseFragment() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        showLoader()
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getShowsList().collectLatest {
                 onGetShowListSuccess(it)
@@ -50,9 +54,29 @@ class ShowsListFragment: BaseFragment() {
     }
 
     private fun onGetShowListSuccess(pagingData: PagingData<Show>) {
+        if (binding.recyclerView.adapter == null) {
+            binding.recyclerView.adapter =
+                adapter.withLoadStateFooter(ShowsLoadStateAdapter.create { adapter.retry() })
+        }
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.submitData(pagingData)
         }
+        viewLifecycleOwner.lifecycleScope.launch {
+            adapter.loadStateFlow.collectLatest { loadState ->
+                if (loadState.refresh !is LoadState.Loading) showLoader(false)
+                if (loadState.refresh is LoadState.Error) {
+                    onGetShowListError((loadState.refresh as LoadState.Error).error)
+                }
+            }
+        }
+    }
+
+    private fun onGetShowListError(error: Throwable) {
+        showMessage(error.message ?: "An error ocurred.")
+    }
+
+    private fun showLoader(show: Boolean = true) {
+        binding.progress.visible(show)
     }
 
 }
