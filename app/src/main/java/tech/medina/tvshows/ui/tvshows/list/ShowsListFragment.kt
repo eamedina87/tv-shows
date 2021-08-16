@@ -11,7 +11,6 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import tech.medina.tvshows.databinding.FragmentShowDetailBinding
 import tech.medina.tvshows.databinding.FragmentShowsListBinding
 import tech.medina.tvshows.domain.model.Show
 import tech.medina.tvshows.ui.common.BaseFragment
@@ -27,8 +26,8 @@ class ShowsListFragment: BaseFragment() {
     private val binding get() = _binding!! // This property is only valid between onCreateView and onDestroyView.
 
     private val adapter by lazy {
-        ShowListPagingAdapter.create(imageLoader) {
-            goToDetail(it)
+        ShowListPagingAdapter.create(imageLoader) { selectedShow ->
+            goToDetail(selectedShow)
         }
     }
 

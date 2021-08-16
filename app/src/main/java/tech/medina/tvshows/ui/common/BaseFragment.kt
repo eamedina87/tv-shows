@@ -19,7 +19,6 @@ abstract class BaseFragment : Fragment() {
 
     @Inject
     lateinit var imageLoader: IImageLoader
-
     abstract val viewModel : ViewModel?
 
     protected abstract fun getBindingRoot(inflater: LayoutInflater, container: ViewGroup?): View
@@ -31,12 +30,9 @@ abstract class BaseFragment : Fragment() {
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return getBindingRoot(inflater, container)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val rootView = getBindingRoot(inflater, container)
         initView(savedInstanceState)
+        return rootView
     }
 
     protected fun showMessage(message:String) {
