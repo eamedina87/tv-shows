@@ -6,6 +6,8 @@ The main screen of the app is the tv shows lists in a grid.
 
 The product detail screen has a more detailed view  of the product including its name, rating and summary.
 
+![screen-gif](./tv_shows_gif.gif)
+
 ## Libraries
 
 - [Retrofit](https://square.github.io/retrofit/)
