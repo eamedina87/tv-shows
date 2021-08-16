@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import tech.medina.tvshows.databinding.FragmentShowDetailBinding
 import tech.medina.tvshows.domain.model.Show
 import tech.medina.tvshows.ui.common.BaseFragment
@@ -44,13 +45,17 @@ class ShowDetailFragment: BaseFragment() {
     }
 
     private fun initCollectors() {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.detail.collectLatest { show ->
                 runIfNotNull(show) { onGetShowDetailSuccess(show) }
             }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.showLoader.collectLatest { show ->
                 runIfNotNull(show) { showLoader(show) }
             }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.error.collectLatest { error ->
                 runIfNotNull(error) { onGetShowDetailError(error) }
             }

@@ -47,13 +47,12 @@ class ShowsViewModelTest : BaseTest() {
         }
     }
 
-    @Test //todo finish testing flows
+    @Test
     fun `get show detail successfully`() = dispatcher.runBlockingTest {
         val viewModel = ShowsViewModel(savedStateHandle, dispatcher, showsListUseCase, showDetailUseCase)
         viewModel.getShowDetail(123)
-        viewModel.detail.test(timeout = Duration.Companion.seconds(5)) {
-                Truth.assertThat(awaitItem()).isEqualTo(FakeModel.showFull)
-                awaitComplete()
+        coVerify {
+            showDetailUseCase(123)
         }
     }
 

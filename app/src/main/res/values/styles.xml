@@ -4,11 +4,26 @@
 
     <style name="Shows.Text" parent="Shows">
         <item name="android:textSize">14sp</item>
+        <item name="android:typeface">monospace</item>
     </style>
 
-    <style name="Shows.Text.Loader.Error" parent="Shows.Text"/>
-    <style name="Shows.Text.Loader.Button" parent="Shows.Text">
-        <item name="android:textAllCaps">true</item>
+    <style name="Shows.Text.Title" parent="Shows.Text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="Shows.Text.Error" parent="Shows.Text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="Shows.Text.Button" parent="Shows.Text">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>

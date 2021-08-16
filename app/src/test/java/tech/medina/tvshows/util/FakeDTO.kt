@@ -13,7 +13,6 @@ object FakeDTO {
         id = 123,
         name = "Name Lastname",
         image = image,
-        country = "spain",
         birthday = "05-09-1965",
         deathday = "27-04-2017",
         gender = "male"
@@ -46,6 +45,10 @@ object FakeDTO {
         episodes = listOf(episode)
     )
 
+    val rating = RatingDTO(
+        average = 10.0
+    )
+
     val showInfo = ShowDTO (
         id = 783,
         name = "Show Name",
@@ -54,7 +57,9 @@ object FakeDTO {
         premiered = "15-05-2009",
         image = image,
         runtimeInMinutes = 55,
-        embedded = null
+        embedded = null,
+        rating = rating,
+        summary = "The summary"
     )
 
     val showFull = ShowDTO(
@@ -65,7 +70,9 @@ object FakeDTO {
         premiered = "15-05-2009",
         image = image,
         runtimeInMinutes = 55,
-        embedded = embedded
+        embedded = embedded,
+        summary = "The summary",
+        rating = rating
     )
 
     val showList = listOf(showInfo)

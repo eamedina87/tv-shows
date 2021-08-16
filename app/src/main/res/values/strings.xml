@@ -10,4 +10,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="loader_retry">Retry</string>
+    <string name="show_lists_error_message">An error occurred obtaining the show list. Please tap to retry.</string>
+    <string name="show_lists_error_message_short">An error occurred obtaining the following shows.</string>
 </resources>

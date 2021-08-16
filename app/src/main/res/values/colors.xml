@@ -10,5 +10,6 @@
 
     <color name="almost_black">#060613</color>
     <color name="almost_black_50">#80060613</color>
+    <color name="almost_black_25">#33060613</color>
     <color name="transparent">@android:color/transparent</color>
 </resources>

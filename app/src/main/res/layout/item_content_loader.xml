@@ -9,7 +9,7 @@
     >
 
     <TextView
-        style="@style/Shows.Text.Loader.Error"
+        style="@style/Shows.Text.Error"
         android:id="@+id/error"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -24,7 +24,6 @@
 
     <ProgressBar
         android:id="@+id/progress"
-        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -35,7 +34,7 @@
         />
 
     <TextView
-        style="@style/Shows.Text.Loader.Button"
+        style="@style/Shows.Text.Button"
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

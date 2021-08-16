@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -30,7 +31,7 @@ class ShowsViewModel @Inject constructor(
     val error = savedState.getLiveData<String>(KEY_SHOW_DETAIL_ERROR).asFlow()
     val showLoader = savedState.getLiveData<Boolean>(KEY_SHOW_DETAIL_LOADER).asFlow()
 
-    suspend fun getShowsList() = showListUseCase()
+    suspend fun getShowsList() = showListUseCase().cachedIn(viewModelScope)
 
     fun getShowDetail(showId: Long) {
         viewModelScope.launch {

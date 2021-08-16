@@ -42,6 +42,7 @@ class ShowsListFragment: BaseFragment() {
 
     override fun initView(savedInstanceState: Bundle?) {
         showLoader()
+        setupViews()
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getShowsList().collectLatest {
                 onGetShowListSuccess(it)
@@ -54,6 +55,12 @@ class ShowsListFragment: BaseFragment() {
         _binding = null
     }
 
+    private fun setupViews() {
+        binding.errorMessage.setOnClickListener {
+            initView(null)
+        }
+    }
+
     private fun onGetShowListSuccess(pagingData: PagingData<Show>) {
         if (binding.recyclerView.adapter == null) {
             binding.recyclerView.adapter =
@@ -61,23 +68,30 @@ class ShowsListFragment: BaseFragment() {
         }
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.submitData(pagingData)
+            showError(false)
         }
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collectLatest { loadState ->
-                if (loadState.refresh !is LoadState.Loading) showLoader(false)
-                if (loadState.refresh is LoadState.Error) {
-                    onGetShowListError((loadState.refresh as LoadState.Error).error)
-                }
+                if (loadState.refresh is LoadState.NotLoading) showLoader(false)
+                if (loadState.refresh is LoadState.Error) onGetShowListError()
             }
         }
     }
 
-    private fun onGetShowListError(error: Throwable) {
-        showMessage(error.message ?: "An error ocurred.")
+    private fun onGetShowListError() {
+        if (adapter.itemCount == 0) {
+            showError()
+            showLoader(false)
+        }
     }
 
     private fun goToDetail(show: Show) {
         navController.navigate(ShowsListFragmentDirections.actionShowListToDetail(show.id))
+    }
+
+    private fun showError(show: Boolean = true) {
+        binding.recyclerView.visible(!show)
+        binding.errorMessage.visible(show)
     }
 
     private fun showLoader(show: Boolean = true) {

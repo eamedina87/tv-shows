@@ -11,6 +11,7 @@
         android:name=".ui.TvShowsApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/security_config"
         android:theme="@style/Theme.TVShows">
         <activity
             android:name=".ui.MainActivity"
